@@ -14,7 +14,7 @@ RUN apt-get install -y nodejs
 
 # Clone FGMachine repo for RAM example
 
-RUN cd /root && git clone https://github.com/Kaixhin/FGMachine.git && cd FGMachine && \
+RUN cd /root && git clone https://github.com/Leo-Gao/FGMachine.git && cd FGMachine && \
 # npm install
   npm install
 

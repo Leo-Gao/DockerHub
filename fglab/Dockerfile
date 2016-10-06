@@ -3,7 +3,7 @@ FROM node
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
 
 # Clone FGLab repo and move into it
-RUN cd /root && git clone https://github.com/Kaixhin/FGLab.git && cd FGLab && \
+RUN cd /root && git clone https://github.com/Leo-Gao/FGLab.git && cd FGLab && \
 # npm install (with root)
   npm install --unsafe-perm && \
 # Create .env with port
