@@ -18,15 +18,15 @@ RUN cd /root && git clone https://github.com/Leo-Gao/FGMachine.git && cd FGMachi
 # npm install
   npm install
 
+RUN npm install --save multer
+
 # Install lxc for creating sibling containers with docker
 RUN apt-get update && apt-get install -y lxc
 
 # Expose port
-EXPOSE 80
 EXPOSE 8080
 EXPOSE 5080
 EXPOSE 5081
-EXPOSE 5082
 
 # Set working directory
 WORKDIR /root/FGMachine
