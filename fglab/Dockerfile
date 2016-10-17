@@ -15,6 +15,10 @@ RUN cd /root && git clone https://github.com/Leo-Gao/FGLab.git && cd FGLab && \
 
 RUN npm i mz
 
+RUN export SSL_KEY=key.pem
+RUN export SSL_CERT=cert.pem
+RUN openssl req -x509 -newkey rsa:4096 -keyout $SSL_KEY -out $SSL_CERT -days 7 -nodes -subj '/CN=localhost'
+
 # Expose port
 EXPOSE 80
 EXPOSE 8080
