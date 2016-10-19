@@ -2,7 +2,7 @@
 FROM node
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
 
-# Install Docker dependencies, pciutils (for lspci) and vim (for editing)
+# Install Docker dependencies, pciutils (for lspci) and vim (for editing) and python libraries for sk-learn
 RUN apt-get update && apt-get install -y \
   python-setuptools python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose \
   apt-transport-https \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
   pciutils \
   vim
 
-# Install pip
+# Install pip and sk-learn
 RUN easy_install pip
 RUN pip install -U scikit-learn
 
@@ -30,12 +30,9 @@ RUN touch /etc/init.d/nvidia-docker && \
 
 # Clone FGMachine repo and move into it
 RUN cd /root && git clone https://github.com/Leo-Gao/FGMachine.git && cd FGMachine && \
-# npm install
   npm install
 
-#RUN pip install -U scikit-learn
-RUN npm install --save multer
-
+# Create https dependencies
 RUN export SSL_KEY=key.pem
 RUN export SSL_CERT=cert.pem
 RUN openssl req -x509 -newkey rsa:4096 -keyout $SSL_KEY -out $SSL_CERT -days 7 -nodes -subj '/CN=localhost'
@@ -44,6 +41,7 @@ RUN openssl req -x509 -newkey rsa:4096 -keyout $SSL_KEY -out $SSL_CERT -days 7 -
 # Expose port
 EXPOSE 5081
 EXPOSE 8080
+EXPOSE 443
 
 # Set working directory
 WORKDIR /root/FGMachine
