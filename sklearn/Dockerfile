@@ -5,7 +5,7 @@ RUN pip install --upgrade pip
 RUN pip install -U scikit-learn
 RUN pip install jupyter
 
-RUN apt-get install -y vim
+RUN apt-get update && apt-get install -y vim
 
 # Expose port
 EXPOSE 80
